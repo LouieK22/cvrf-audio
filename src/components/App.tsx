@@ -11,19 +11,19 @@ type State = {
 
 let processing = false;
 
-let globalCode = "alpha 1";
+let globalCode = "login_emergency alpha 2";
 
 export default class App extends React.Component<unknown, State> {
 	state = {
-		code: "alpha 1",
+		code: "login_emergency alpha 2",
 	};
 
 	render() {
 		return (
 			<main className="container">
 				<div className="container__content">
-					<h1>react-simple-code-editor</h1>
-					<p>A simple no-frills code editor with syntax highlighting.</p>
+					<h1>CVRF Audio Tool</h1>
+					<p>Green text will play, Red text will not play</p>
 					<div className="container_editor_area">
 						<Editor
 							placeholder="Type some code…"
