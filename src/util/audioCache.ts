@@ -1,6 +1,6 @@
 export const manifest = new Set<string>();
 
-const urlPrefix = "https://cdn.jsdelivr.net/gh/LouieK22/cvrf-audio@master/assets/audio/";
+const urlPrefix = "./audio";
 
 export const getArrayBuffer = (name: string) => {
 	const url = `${urlPrefix}/${name}.wav`;
