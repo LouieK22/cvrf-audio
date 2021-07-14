@@ -1,17 +1,11 @@
-export const cache = new Map<string, ArrayBuffer>();
 export const manifest = new Set<string>();
 
 const urlPrefix = "./audio";
 
 export const getArrayBuffer = (name: string) => {
-	const url = `${urlPrefix}/${name}`;
+	const url = `${urlPrefix}/${name}.wav`;
 
 	return new Promise<ArrayBuffer>((resolve, reject) => {
-		const cacheHit = cache.get(name);
-		if (cacheHit) {
-			resolve(cacheHit);
-		}
-
 		fetch(url)
 			.then((res) => {
 				if (res.ok && res.headers.get("Content-Type") === "audio/wav") {
@@ -21,7 +15,6 @@ export const getArrayBuffer = (name: string) => {
 				}
 			})
 			.then((buffer) => {
-				cache.set(name, buffer);
 				resolve(buffer);
 			})
 			.catch((err) => {
@@ -43,10 +36,4 @@ export const loadManifest = async () => {
 	dataDecode.forEach((value) => {
 		manifest.add(value);
 	});
-};
-
-export const getAudioBuffer = async (context: OfflineAudioContext, name: string) => {
-	const arrayBuffer = await getArrayBuffer(name);
-
-	return await context.decodeAudioData(arrayBuffer);
 };

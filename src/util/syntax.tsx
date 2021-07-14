@@ -1,7 +1,7 @@
 import React from "react";
 import { manifest } from "./audioCache";
 
-export const highlight = (code: string) => {
+export const sanitize = (code: string) => {
 	const invalidPositions = [...code.matchAll(/\W/g)];
 	let sanitizedStringArray = new Array<string>();
 
@@ -43,7 +43,19 @@ export const highlight = (code: string) => {
 		return value ? true : false;
 	});
 
-	const spanPoints = sanitizedStringArray.map((char, index) => {
+	return sanitizedStringArray;
+};
+
+export const filter = (code: string) => {
+	const sanitized = sanitize(code);
+
+	return sanitized.filter((value) => {
+		return manifest.has(value);
+	});
+};
+
+export const highlight = (code: string) => {
+	const spanPoints = sanitize(code).map((char, index) => {
 		return (
 			<React.Fragment>
 				<span style={{ color: manifest.has(char) ? "green" : "red" }} key={index}>
