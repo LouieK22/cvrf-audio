@@ -1,8 +1,15 @@
 import React from "react";
 import ReactDom from "react-dom";
 import App from "./App";
+import { loadManifest } from "./audioCache";
 
-ReactDom.render(<App />, document.getElementById("root"));
+const main = async () => {
+	await loadManifest();
+
+	ReactDom.render(<App />, document.getElementById("root"));
+};
+
+main().catch(console.error);
 
 /*
 //import { downloadBlob } from "./download";

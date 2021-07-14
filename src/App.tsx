@@ -1,50 +1,43 @@
-import React, { useState } from "react";
+import React from "react";
+import Editor from "react-simple-code-editor";
+import { highlight } from "./highlighter";
 
-// Styles
-import "./styles/index.css";
+import "./styles.css";
 
-// Components
-import CodeEditor from "./components/CodeEditor";
+type State = {
+	code: string;
+};
 
-export default function App() {
-	const [editorLanguage, setEditorLanguage] = useState("javascript");
+export default class App extends React.Component<unknown, State> {
+	state = {
+		code: "alpha 1",
+	};
 
-	return (
-		<div className="App">
-			<h1>React code syntax highlighter</h1>
-
-			<fieldset>
-				<legend>Choose language:</legend>
-				<input
-					type="radio"
-					id="javascript"
-					name="language"
-					value="javascript"
-					checked={editorLanguage === "javascript"}
-					onChange={() => setEditorLanguage("javascript")}
-				/>
-				<label htmlFor="javascript">JavaScript</label>
-				<input
-					type="radio"
-					id="xml"
-					name="language"
-					value="markup"
-					checked={editorLanguage === "markup"}
-					onChange={() => setEditorLanguage("markup")}
-				/>
-				<label htmlFor="xml">XML</label>
-				<input
-					type="radio"
-					id="css"
-					name="language"
-					value="css"
-					checked={editorLanguage === "css"}
-					onChange={() => setEditorLanguage("css")}
-				/>
-				<label htmlFor="css">CSS</label>
-			</fieldset>
-
-			<CodeEditor language={editorLanguage} />
-		</div>
-	);
+	render() {
+		return (
+			<main className="container">
+				<div className="container__content">
+					<h1>react-simple-code-editor</h1>
+					<p>A simple no-frills code editor with syntax highlighting.</p>
+					<a className="button" href="https://github.com/satya164/react-simple-code-editor">
+						GitHub
+					</a>
+					<div className="container_editor_area">
+						<Editor
+							placeholder="Type some code…"
+							value={this.state.code}
+							onValueChange={(code) => {
+								this.setState({
+									code,
+								});
+							}}
+							highlight={highlight}
+							padding={10}
+							className="container__editor"
+						/>
+					</div>
+				</div>
+			</main>
+		);
+	}
 }
