@@ -29,6 +29,7 @@
 		],
 		"@typescript-eslint/member-ordering": [
 			"warn"
-		]
+		],
+		"@typescript-eslint/explicit-module-boundary-types": "off"
 	}
 }

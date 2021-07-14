@@ -2,15 +2,23 @@
   "name": "cvrf-audio",
   "version": "0.0.1",
   "description": "",
+  "license": "MIT",
+  "author": "LouieK22",
   "scripts": {
     "start": "parcel serve ./src/index.html",
     "build": "parcel build ./src/index.html"
   },
-  "author": "LouieK22",
-  "license": "MIT",
+  "dependencies": {
+    "audiobuffer-to-wav": "^1.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-simple-code-editor": "^0.11.0",
+    "serve-static": "^1.14.1"
+  },
   "devDependencies": {
     "@parcel/transformer-typescript-tsc": "next",
-    "@parcel/validator-typescript": "next",
+    "@types/audiobuffer-to-wav": "^1.0.1",
+    "@types/dom-mediacapture-record": "^1.0.10",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
@@ -22,8 +30,7 @@
     "prettier": "^2.3.2",
     "typescript": "^4.3.5"
   },
-  "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+  "staticFiles": {
+    "staticPath": "assets"
   }
 }
