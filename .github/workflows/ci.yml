@@ -18,10 +18,10 @@ jobs:
         uses: bahmutov/npm-install@v1.7.4
 
       - name: Build site
-        uses: npm run build
+        run: npm run build
 
       - name: Copy static assets
-        uses: cp -r assets/audio dist/
+        run: cp -r assets/audio dist/
 
       - name: Deploy Site
         uses: JamesIves/github-pages-deploy-action@4.1.4
