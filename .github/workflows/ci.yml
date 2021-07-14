@@ -8,22 +8,25 @@ on:
 
 jobs:
   deploy:
-    - name: Checkout repository
-      uses: actions/checkout@v2.3.4
+    runs-on: ubuntu-latest
 
-    - name: Install NPM dependdencies
-      uses: bahmutov/npm-install@v1.7.4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2.3.4
 
-    - name: Build site
-      uses: npm run build
+      - name: Install NPM dependdencies
+        uses: bahmutov/npm-install@v1.7.4
 
-    - name: Copy static assets
-      uses: cp -r assets/audio dist/
+      - name: Build site
+        uses: npm run build
 
-    - name: Deploy Site
-      uses: JamesIves/github-pages-deploy-action@4.1.4
-      with:
-        branch: gh-pages
-        folder: dist
-        git-config-name: "GitHub Actions"
-        git-config-email: "noreply@github.com"
+      - name: Copy static assets
+        uses: cp -r assets/audio dist/
+
+      - name: Deploy Site
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: dist
+          git-config-name: "GitHub Actions"
+          git-config-email: "noreply@github.com"
