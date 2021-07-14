@@ -43,7 +43,7 @@ export const render = async (words: string[]) => {
 		source.connect(context.destination);
 		source.start(context.currentTime + cursor);
 
-		cursor += source.buffer.duration;
+		cursor += source.buffer.duration + config.normalSplit;
 	}
 
 	return await context.startRendering();
